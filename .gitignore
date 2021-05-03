@@ -1,0 +1,6 @@
+# Jet Brains
+.idea
+
+# Python
+__pycache__/
+dist/

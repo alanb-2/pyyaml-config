@@ -1,0 +1,4 @@
+application_name: "Test"
+memory: "2GiB"
+workers: 1
+log_level: "INFO"

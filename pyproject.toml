@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "pyyaml-config"
+version = "0.1.0"
+description = "Library that wraps the PyYAML library and enables validation of ingested YAML files."
+authors = ["alanb-2"]
+license = "Apache License 2.0"
+
+packages = [
+    { include="src", from="." }
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+PyYAML = "^5.4.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
