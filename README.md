@@ -1,6 +1,10 @@
 # pyyaml-config
 
-Library that wraps the `PyYAML` library and enables validation of ingested YAML files.
+Library that wraps the `PyYAML` library and enables validation of ingested YAML files.  The project is used in conjunction
+with other repositories to demonstrate the use of shared libraries via a private PyPi repository: 
+
+* https://github.com/alanb-2/k8s-sonatype-nexus
+* TBD
 
 ## Prerequisites
 
@@ -59,6 +63,21 @@ poetry update
 ```shell
 poetry run pytest
 ```
+
+### Use private repository
+
+Note: this assumes that the artifact repository in https://github.com/alanb-2/k8s-sonatype-nexus is up and running.
+
+1.  Configure the repository endpoint:
+    ```shell
+    poetry config repositories.nexus http://localhost:30081/repository/pypi-group/simple
+    ```
+
+2.  Store the credentials:
+    ```shell
+    poetry config http-basic.nexus $USERNAME
+    ```
+    where the default Nexus repository `USERNAME` is `admin`.  The command will prompt for the password to the account.
 
 ## Resources
 

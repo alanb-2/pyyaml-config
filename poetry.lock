@@ -6,19 +6,29 @@ category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
+[package.source]
+type = "legacy"
+url = "http://localhost:30081/repository/pypi-public/simple"
+reference = "nexus"
+
 [[package]]
 name = "attrs"
-version = "21.1.0"
+version = "21.2.0"
 description = "Classes Without Boilerplate"
 category = "dev"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [package.extras]
 dev = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface", "furo", "sphinx", "sphinx-notfound-page", "pre-commit"]
 docs = ["furo", "sphinx", "zope.interface", "sphinx-notfound-page"]
 tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface"]
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins"]
+
+[package.source]
+type = "legacy"
+url = "http://localhost:30081/repository/pypi-public/simple"
+reference = "nexus"
 
 [[package]]
 name = "colorama"
@@ -28,6 +38,11 @@ category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
+[package.source]
+type = "legacy"
+url = "http://localhost:30081/repository/pypi-public/simple"
+reference = "nexus"
+
 [[package]]
 name = "iniconfig"
 version = "1.1.1"
@@ -35,6 +50,11 @@ description = "iniconfig: brain-dead simple config-ini parsing"
 category = "dev"
 optional = false
 python-versions = "*"
+
+[package.source]
+type = "legacy"
+url = "http://localhost:30081/repository/pypi-public/simple"
+reference = "nexus"
 
 [[package]]
 name = "packaging"
@@ -47,6 +67,11 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 [package.dependencies]
 pyparsing = ">=2.0.2"
 
+[package.source]
+type = "legacy"
+url = "http://localhost:30081/repository/pypi-public/simple"
+reference = "nexus"
+
 [[package]]
 name = "pluggy"
 version = "0.13.1"
@@ -58,6 +83,11 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 [package.extras]
 dev = ["pre-commit", "tox"]
 
+[package.source]
+type = "legacy"
+url = "http://localhost:30081/repository/pypi-public/simple"
+reference = "nexus"
+
 [[package]]
 name = "py"
 version = "1.10.0"
@@ -66,6 +96,11 @@ category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
+[package.source]
+type = "legacy"
+url = "http://localhost:30081/repository/pypi-public/simple"
+reference = "nexus"
+
 [[package]]
 name = "pyparsing"
 version = "2.4.7"
@@ -73,6 +108,11 @@ description = "Python parsing module"
 category = "dev"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[package.source]
+type = "legacy"
+url = "http://localhost:30081/repository/pypi-public/simple"
+reference = "nexus"
 
 [[package]]
 name = "pytest"
@@ -95,6 +135,11 @@ toml = "*"
 [package.extras]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
+[package.source]
+type = "legacy"
+url = "http://localhost:30081/repository/pypi-public/simple"
+reference = "nexus"
+
 [[package]]
 name = "pyyaml"
 version = "5.4.1"
@@ -102,6 +147,11 @@ description = "YAML parser and emitter for Python"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
+
+[package.source]
+type = "legacy"
+url = "http://localhost:30081/repository/pypi-public/simple"
+reference = "nexus"
 
 [[package]]
 name = "toml"
@@ -111,10 +161,15 @@ category = "dev"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
+[package.source]
+type = "legacy"
+url = "http://localhost:30081/repository/pypi-public/simple"
+reference = "nexus"
+
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "e5bb6186533ebd0076334abf1669885ec7f52bfad3b84b9118f8c0641fdada57"
+content-hash = "a886139b2ed7ad03cd1777565719c8cb0beb8afc9f37cc995f08f976fb8e1829"
 
 [metadata.files]
 atomicwrites = [
@@ -122,8 +177,8 @@ atomicwrites = [
     {file = "atomicwrites-1.4.0.tar.gz", hash = "sha256:ae70396ad1a434f9c7046fd2dd196fc04b12f9e91ffb859164193be8b6168a7a"},
 ]
 attrs = [
-    {file = "attrs-21.1.0-py2.py3-none-any.whl", hash = "sha256:8ee1e5f5a1afc5b19bdfae4fdf0c35ed324074bdce3500c939842c8f818645d9"},
-    {file = "attrs-21.1.0.tar.gz", hash = "sha256:3901be1cb7c2a780f14668691474d9252c070a756be0a9ead98cfeabfa11aeb8"},
+    {file = "attrs-21.2.0-py2.py3-none-any.whl", hash = "sha256:149e90d6d8ac20db7a955ad60cf0e6881a3f20d37096140088356da6c716b0b1"},
+    {file = "attrs-21.2.0.tar.gz", hash = "sha256:ef6aaac3ca6cd92904cdd0d83f629a15f18053ec84e6432106f7a4d04ae4f5fb"},
 ]
 colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
