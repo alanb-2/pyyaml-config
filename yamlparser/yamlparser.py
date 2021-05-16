@@ -5,12 +5,12 @@ from dataclasses import dataclass, is_dataclass
 from typing import Any, Optional
 
 
-class YamlConfigException(Exception):
+class YamlParserException(Exception):
     pass
 
 
 @dataclass
-class YamlConfig:
+class YamlParser:
 
     filepath: str
     model: Any
@@ -20,7 +20,7 @@ class YamlConfig:
         error_message = self._validate_init()
 
         if error_message:
-            raise YamlConfigException(error_message)
+            raise YamlParserException(error_message)
 
     def _validate_init(self) -> Optional[str]:
 
