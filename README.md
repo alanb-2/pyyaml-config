@@ -4,7 +4,7 @@ Library that wraps the `PyYAML` library and enables validation of ingested YAML 
 with other repositories to demonstrate the use of shared libraries via a private PyPi repository: 
 
 * https://github.com/alanb-2/k8s-sonatype-nexus
-* TBD
+* https://github.com/alanb-2/python-import-library
 
 ## Prerequisites
 
@@ -32,6 +32,7 @@ This project makes use of `poetry` to manage the build.
     poetry env use 3.9.5
     poetry install
     ```
+    Note: this assumes that the artifact repository in https://github.com/alanb-2/k8s-sonatype-nexus is up and running.
 
 ### PyCharm
 
@@ -49,36 +50,73 @@ This project makes use of `poetry` to manage the build.
     
 5.  Click on `Ok` to complete the configuration and close the pane to return to the `Settings` pane.
 6.  In the `Settings` pane, click on `Ok` to close the pane and finish configuring the IDE interpreter.
-    
-## Commands
 
-### Update dependencies
+### Repository configuration
+
+It's intended that this repository should be used in conjunction with the Sonatype Nexus repository defined in https://github.com/alanb-2/k8s-sonatype-nexus.
+
+1.  Configure the repository endpoints for read and write respectively:
+    ```shell
+    poetry config repositories.nexus http://localhost:30081/repository/pypi-group/simple
+    poetry config repositories.private http://localhost:30081/repository/pypi-private/
+    ```
+    
+2.  Store the repository configurations:
+    ```shell
+    poetry config http-basic.nexus $USERNAME
+    poetry config http-basic.private $USERNAME
+    ```
+    where the default Nexus repository `USERNAME` is `admin`.
+
+## Update dependencies
+
+Note: this assumes that the artifact repository in https://github.com/alanb-2/k8s-sonatype-nexus is up and running.
 
 ```shell
 poetry update
 ```
 
-### Test
+## Test
 
 ```shell
 poetry run pytest
 ```
 
-### Use private repository
+## Test with coverage
 
-Note: this assumes that the artifact repository in https://github.com/alanb-2/k8s-sonatype-nexus is up and running.
+```shell
+poetry run pytest --cov tests/
+```
 
-1.  Configure the repository endpoint:
-    ```shell
-    poetry config repositories.nexus http://localhost:30081/repository/pypi-group/simple
-    ```
+## Build
 
-2.  Store the credentials:
-    ```shell
-    poetry config http-basic.nexus $USERNAME
-    ```
-    where the default Nexus repository `USERNAME` is `admin`.  The command will prompt for the password to the account.
+```shell
+poetry build
+```
 
-## Resources
+## Publish
 
-Poetry for Python: https://python-poetry.org/docs/
+Note: the library should be built before running this step.
+
+```shell
+poetry publish --repository repositories.private
+```
+
+## Usage
+
+The `YamlParser` can be defined by supplying an input filepath and dataclass model:
+
+```shell
+from yamlparser.yamlparser import YamlParser
+
+yamlparser = YamlParser("./input.yaml", DataclassModel)
+```
+
+When `read` is executed, the yaml file will be parsed and the populated dataclass model returned:
+
+```shell
+config = yamlparser.read()
+```
+
+Since a dataclass is being used to parse the ingested yaml, any validation rules or other logic implemented within the
+dataclass initialisation classes will also be executed before returning the dataclass model.

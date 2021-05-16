@@ -1,7 +1,7 @@
 import dataclasses
 import pytest
 
-from src.yaml_config import YamlConfig, YamlConfigException
+from yamlparser.yamlparser import YamlParser, YamlParserException
 from tests.unit.simple_dataclass import SimpleDataclass, SimpleDataclassException
 from tests.conftest import TEST_ROOT_DIR
 
@@ -11,8 +11,8 @@ def test_invalid_filepath():
     filepath = "./resources/file.yaml"
     model = SimpleDataclass
 
-    with pytest.raises(YamlConfigException) as exception:
-        YamlConfig(
+    with pytest.raises(YamlParserException) as exception:
+        YamlParser(
             filepath=filepath,
             model=model
         )
@@ -25,8 +25,8 @@ def test_model_not_dataclass():
     filepath = f"{TEST_ROOT_DIR}/resources/valid.yaml"
     model = "Not a dataclass type"
 
-    with pytest.raises(YamlConfigException) as exception:
-        YamlConfig(
+    with pytest.raises(YamlParserException) as exception:
+        YamlParser(
             filepath=filepath,
             model=model
         )
@@ -36,12 +36,12 @@ def test_model_not_dataclass():
 
 def test_read_valid_yaml():
 
-    yaml_config = YamlConfig(
+    yaml_parser = YamlParser(
         filepath=f"{TEST_ROOT_DIR}/resources/valid.yaml",
         model=SimpleDataclass
     )
 
-    actual_dataclass = yaml_config.read()
+    actual_dataclass = yaml_parser.read()
 
     expected_dictionary = {
         "application_name": "Test",
@@ -57,12 +57,12 @@ def test_read_valid_yaml():
 
 def test_read_invalid_yaml():
 
-    yaml_config = YamlConfig(
+    yaml_parser = YamlParser(
         filepath=f"{TEST_ROOT_DIR}/resources/invalid.yaml",
         model=SimpleDataclass
     )
 
     with pytest.raises(SimpleDataclassException) as exception:
-        yaml_config.read()
+        yaml_parser.read()
 
     assert str(exception.value) == f"memory expects a 'float' type, but input has type: <class 'str'>"
