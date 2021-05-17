@@ -85,7 +85,7 @@ poetry run pytest
 ## Test with coverage
 
 ```shell
-poetry run pytest --cov tests/
+poetry run pytest --cov src/
 ```
 
 ## Build
