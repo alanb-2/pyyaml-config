@@ -49,7 +49,7 @@ This project makes use of `poetry` to manage the build.
     ```
     
 5.  Click on `Ok` to complete the configuration and close the pane to return to the `Settings` pane.
-6.  In the `Settings` pane, click on `Ok` to close the pane and finish configuring the IDE interpreter.
+6.  In the `Settings` pane, click on `Apply` followed by `Ok` to finish configuring the IDE interpreter and close the pane.
 
 ### Repository configuration
 
