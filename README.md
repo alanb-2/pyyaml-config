@@ -1,4 +1,4 @@
-# pyyaml-config
+# pyyaml-parser
 
 Library that wraps the `PyYAML` library and enables validation of ingested YAML files.  The project is used in conjunction
 with other repositories to demonstrate the use of shared libraries via a private PyPi repository: 
