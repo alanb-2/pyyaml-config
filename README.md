@@ -11,9 +11,10 @@ with other repositories to demonstrate the use of shared libraries via a private
 * `python 3.9.5`
 * `poetry 1.1.6`
 
-### Poetry
+Note: the instructions assume that the artifact repository in https://github.com/alanb-2/k8s-sonatype-nexus is up and running,
+the admin user has been initialised and that the necessary PyPi repositories have been created.
 
-This project makes use of `poetry` to manage the build.  
+### Poetry
 
 1.  Install `poetry`: 
     ```shell
@@ -26,13 +27,25 @@ This project makes use of `poetry` to manage the build.
     ```shell
     poetry --version
     ```
-    
-3.  Set the `poetry` environment and install the project dependencies:
+
+3.  Configure the repository endpoints for read and write respectively:
+    ```shell
+    poetry config repositories.nexus http://localhost:30081/repository/pypi-group/simple
+    poetry config repositories.private http://localhost:30081/repository/pypi-private/
+    ```
+
+4.  Store the repository configurations:
+    ```shell
+    poetry config http-basic.nexus $USERNAME
+    poetry config http-basic.private $USERNAME
+    ```
+    where the default Nexus repository `USERNAME` is `admin`.
+
+5.  Set the `poetry` environment and install the project dependencies:
     ```shell
     poetry env use 3.9.5
     poetry install
     ```
-    Note: this assumes that the artifact repository in https://github.com/alanb-2/k8s-sonatype-nexus is up and running.
 
 ### PyCharm
 
@@ -49,28 +62,10 @@ This project makes use of `poetry` to manage the build.
     ```
     
 5.  Click on `Ok` to complete the configuration and close the pane to return to the `Settings` pane.
+    
 6.  In the `Settings` pane, click on `Apply` followed by `Ok` to finish configuring the IDE interpreter and close the pane.
 
-### Repository configuration
-
-It's intended that this repository should be used in conjunction with the Sonatype Nexus repository defined in https://github.com/alanb-2/k8s-sonatype-nexus.
-
-1.  Configure the repository endpoints for read and write respectively:
-    ```shell
-    poetry config repositories.nexus http://localhost:30081/repository/pypi-group/simple
-    poetry config repositories.private http://localhost:30081/repository/pypi-private/
-    ```
-    
-2.  Store the repository configurations:
-    ```shell
-    poetry config http-basic.nexus $USERNAME
-    poetry config http-basic.private $USERNAME
-    ```
-    where the default Nexus repository `USERNAME` is `admin`.
-
 ## Update dependencies
-
-Note: this assumes that the artifact repository in https://github.com/alanb-2/k8s-sonatype-nexus is up and running.
 
 ```shell
 poetry update
@@ -99,7 +94,7 @@ poetry build
 Note: the library should be built before running this step.
 
 ```shell
-poetry publish --repository repositories.private
+poetry publish --repository private
 ```
 
 ## Usage
